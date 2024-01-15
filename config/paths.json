@@ -1,0 +1,56 @@
+{
+    "paths": [
+        {
+            "alias": "@src",
+            "path": ""
+        },
+        {
+            "alias": "@config",
+            "path": "config"
+        },
+        {
+            "alias": "@components",
+            "path": "components"
+        },
+        {
+            "alias": "@pages",
+            "path": "components/pages"
+        },
+        {
+            "alias": "@assets",
+            "path": "assets"
+        },
+        {
+            "alias": "@interfaces",
+            "path": "interfaces"
+        },
+        {
+            "alias": "@styles",
+            "path": "styles"
+        },
+        {
+            "alias": "@utils",
+            "path": "utils"
+        },
+        {
+            "alias": "@context",
+            "path": "context"
+        },
+        {
+            "alias": "@hooks",
+            "path": "hooks"
+        },
+        {
+            "alias": "@lang",
+            "path": "lang"
+        },
+        {
+            "alias": "@icons",
+            "path": "components/basic/icons"
+        },
+        {
+            "alias": "@data",
+            "path": "data"
+        }
+    ]
+}

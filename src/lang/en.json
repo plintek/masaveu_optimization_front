@@ -1,0 +1,931 @@
+[
+    {
+        "key": "Project.name",
+        "value": "Masaveu"
+    },
+    {
+        "key": "create_a_user",
+        "value": "Create your account"
+    },
+    {
+        "key": "form.name",
+        "value": "Name"
+    },
+    {
+        "key": "form.roles",
+        "value": "Roles"
+    },
+    {
+        "key": "layers",
+        "value": "Layers"
+    },
+    {
+        "key": "layer",
+        "value": "Layer"
+    },
+    {
+        "key": "form.email",
+        "value": "Enter email address"
+    },
+    {
+        "key": "form.password",
+        "value": "Password"
+    },
+    {
+        "key": "form.checkPassword",
+        "value": "Repeat Password"
+    },
+    {
+        "key": "invite_a_user",
+        "value": "Invite a user"
+    },
+    {
+        "key": "Create.CreateForm.guide.welcome",
+        "value": "Welcome!"
+    },
+    {
+        "key": "Create.CreateForm.guide",
+        "value": "Please write your info in the fields for create your account."
+    },
+    {
+        "key": "next",
+        "value": "Next"
+    },
+    {
+        "key": "name",
+        "value": "Name"
+    },
+    {
+        "key": "coordinates",
+        "value": "Coordinates"
+    },
+    {
+        "key": "api_location",
+        "value": "Location"
+    },
+    {
+        "key": "type",
+        "value": "Type"
+    },
+    {
+        "key": "startDate",
+        "value": "Start date"
+    },
+    {
+        "key": "endDate",
+        "value": "End date"
+    },
+    {
+        "key": "send_invitation",
+        "value": "Send Invitation"
+    },
+    {
+        "key": "send_create",
+        "value": "Create"
+    },
+    {
+        "key": "Invite.InviteForm.guide",
+        "value": "Please, in order to invite a user, write your email in the field below and then a confirmation email will be sent to your email, once you confirm, you can use the platform. Thanks a lot"
+    },
+    {
+        "key": "Login.title",
+        "value": "Masaveu"
+    },
+    {
+        "key": "Login.subtitle",
+        "value": "Type your user profile"
+    },
+    {
+        "key": "Login.remember_me",
+        "value": "Remember me"
+    },
+    {
+        "key": "Login.forgot_password",
+        "value": "Have you forgotten your password?"
+    },
+    {
+        "key": "Login.create_account",
+        "value": "Create account"
+    },
+    {
+        "key": "Legal.legal_notice",
+        "value": "Legal notice"
+    },
+    {
+        "key": "Legal.privacy_policy",
+        "value": "Privacy policy"
+    },
+    {
+        "key": "Legal.cookies_policy",
+        "value": "Cookies policy"
+    },
+    {
+        "key": "DashboardPage.SideBar.SideBarMenu.alerts",
+        "value": "Alerts"
+    },
+    {
+        "key": "DashboardPage.SideBar.SideBarMenu.layers",
+        "value": "Layers"
+    },
+    {
+        "key": "DashboardPage.SideBar.SideBarMenu.efficiency",
+        "value": "Efficiency"
+    },
+    {
+        "key": "DashboardPage.SideBar.SideBarMenu.sostenibility",
+        "value": "Sostenibility"
+    },
+    {
+        "key": "DashboardPage.SideBar.SideBarMenu.accesibility",
+        "value": "Accesibility"
+    },
+    {
+        "key": "DashboardPage.SideBar.SideBarMenu.others",
+        "value": "Others"
+    },
+    {
+        "key": "DashboardPage.SideBar.SideBarMenu.theme",
+        "value": "Theme"
+    },
+    {
+        "key": "DashboardPage.SideBar.SideBarMenu.database",
+        "value": "Database"
+    },
+    {
+        "key": "DashboardPage.SideBar.SideBarMenu.settings",
+        "value": "Settings"
+    },
+    {
+        "key": "DashboardPage.SideBar.SideBarMenu.export",
+        "value": "Export"
+    },
+    {
+        "key": "DashboardPage.SideBar.SideBarMenu.invite",
+        "value": "Invite"
+    },
+    {
+        "key": "Home.HomeHeader.location_placeholder",
+        "value": "Search..."
+    },
+    {
+        "key": "routes",
+        "value": "Routes"
+    },
+    {
+        "key": "stops",
+        "value": "Stops"
+    },
+    {
+        "key": "order",
+        "value": "Order"
+    },
+    {
+        "key": "efficiency",
+        "value": "Efficiency"
+    },
+    {
+        "key": "sostenibility",
+        "value": "Sostenibility"
+    },
+    {
+        "key": "accesibility",
+        "value": "Accesibility"
+    },
+    {
+        "key": "pollution",
+        "value": "Pollution"
+    },
+    {
+        "key": "Home.DataTable.layer_placeholder",
+        "value": "Select layer table"
+    },
+    {
+        "key": "role",
+        "value": "Role"
+    },
+    {
+        "key": "sign_out",
+        "value": "Sign out"
+    },
+    {
+        "key": "Restrictions.accident",
+        "value": "Accident"
+    },
+    {
+        "key": "Restrictions.manifestation",
+        "value": "Manifestation"
+    },
+    {
+        "key": "Settings.Restrictions.edit_restriction_in_map",
+        "value": "Edit restriction in map"
+    },
+    {
+        "key": "Settings.Restrictions.draw_restriction_in_map",
+        "value": "Draw restriction in map"
+    },
+    {
+        "key": "restrictions",
+        "value": "Restrictions"
+    },
+    {
+        "key": "parkings",
+        "value": "Parkings"
+    },
+    {
+        "key": "depots",
+        "value": "Depots"
+    },
+    {
+        "key": "lockers",
+        "value": "Lockers"
+    },
+    {
+        "key": "date",
+        "value": "Date"
+    },
+    {
+        "key": "Statistics.freight_movement",
+        "value": "Freight Movement"
+    },
+    {
+        "key": "Statistics.variantions_of_movements",
+        "value": "Variations Of Movements"
+    },
+    {
+        "key": "Statistics.success_rate_by_zone",
+        "value": "Success Rate By Zone"
+    },
+    {
+        "key": "Statistics.section_in_1st_delivery_attempt",
+        "value": "Section In 1st Delivery Attempt"
+    },
+    {
+        "key": "Statistics.expected_shipments_vs_delivered_shipments",
+        "value": "Expected Shipments Vs Delivered Shipments"
+    },
+    {
+        "key": "Statistics.local_freight_transport_fuel_mix",
+        "value": "Local freight transport fuel mix | % in kms |"
+    },
+    {
+        "key": "delivered",
+        "value": "Delivered"
+    },
+    {
+        "key": "failed",
+        "value": "Failed"
+    },
+    {
+        "key": "in_distribution",
+        "value": "In Distribution"
+    },
+    {
+        "key": "Statistics.shipments_delivered_by_kilometers_travelled",
+        "value": "Shipments Delivered By Kilometers Travelled"
+    },
+    {
+        "key": "Statistics.km_planned_vs_real_km",
+        "value": "Km Planned Vs Real Km"
+    },
+    {
+        "key": "Statistics.total_shipments_monitored",
+        "value": "Total Shipments Monitored"
+    },
+    {
+        "key": "Statistics.time_planned_vs_real_time",
+        "value": "Time Planned Vs Real Time"
+    },
+    {
+        "key": "Statistics.capacity_shipments",
+        "value": "Capacity (Shipments)"
+    },
+    {
+        "key": "Statistics.stop_times_of_routes_vehicles",
+        "value": "Stop Times Of Routes (Vehicles)"
+    },
+    {
+        "key": "Statistics.green_jobs",
+        "value": "Green Jobs"
+    },
+    {
+        "key": "Statistics.of_jobs",
+        "value": "Of Jobs"
+    },
+    {
+        "key": "Statistics.green_vehicle",
+        "value": "Green Vehicle"
+    },
+    {
+        "key": "Statistics.information_on_co2",
+        "value": "Information on CO2"
+    },
+    {
+        "key": "Statistics.information_on_nox",
+        "value": "Information on NOx"
+    },
+    {
+        "key": "Statistics.other_unemitted_pollutants",
+        "value": "Other unemitted pollutants"
+    },
+    {
+        "key": "Statistics.electrical_vehicles_vs_total_vehicles",
+        "value": "Electrical Vehicles Vs Total Vehicles"
+    },
+    {
+        "key": "Statistics.noise_pollution_db",
+        "value": "Noise pollution (dB)"
+    },
+    {
+        "key": "Statistics.nitrogen_oxide_emissions_g_cap",
+        "value": "Nitrogen oxide emissions (NOx) | g/cap"
+    },
+    {
+        "key": "Statistics.co2_emissions_t_co2_cap_yr",
+        "value": "CO2 emissions | t CO2/cap/yr"
+    },
+    {
+        "key": "type_of_route",
+        "value": "Type of route"
+    },
+    {
+        "key": "route",
+        "value": "Route"
+    },
+    {
+        "key": "edit_point_in_map",
+        "value": "Edit point in map"
+    },
+    {
+        "key": "draw_point_in_map",
+        "value": "Draw point in map"
+    },
+    {
+        "key": "Settings.Parking.edit_parking_in_map",
+        "value": "Edit parking in map"
+    },
+    {
+        "key": "Settings.Parking.draw_parking_in_map",
+        "value": "Draw parking in map"
+    },
+    {
+        "key": "all",
+        "value": "All"
+    },
+    {
+        "key": "company",
+        "value": "Company"
+    },
+    {
+        "key": "transportation",
+        "value": "Transportation"
+    },
+    {
+        "key": "filters",
+        "value": "Filters"
+    },
+    {
+        "key": "address",
+        "value": "Address"
+    },
+    {
+        "key": "route_planner",
+        "value": "Router Planner"
+    },
+    {
+        "key": "VehicleFleet.truck",
+        "value": "Truck"
+    },
+    {
+        "key": "VehicleFleet.van",
+        "value": "Van"
+    },
+    {
+        "key": "VehicleFleet.car",
+        "value": "Car"
+    },
+    {
+        "key": "VehicleFleet.license",
+        "value": "License"
+    },
+    {
+        "key": "VehicleFleet.Model",
+        "value": "Model"
+    },
+    {
+        "key": "VehicleFleet.PurchaseDate",
+        "value": "Purchase Date"
+    },
+    {
+        "key": "VehicleFleet.ServiceStatus",
+        "value": "Service Status"
+    },
+    {
+        "key": "co2",
+        "value": "CO2"
+    },
+    {
+        "key": "noise",
+        "value": "Noise"
+    },
+    {
+        "key": "RouteConfiguration.fastest_route",
+        "value": "Time"
+    },
+    {
+        "key": "RouteConfiguration.emissions_in_the_areas",
+        "value": "Distance"
+    },
+    {
+        "key": "RouteConfiguration.co2_emitted_saved",
+        "value": "Emissions"
+    },
+    {
+        "key": "RouteConfiguration.areas_withour_orders",
+        "value": "Cost"
+    },
+    {
+        "key": "traffic",
+        "value": "NOx"
+    },
+    {
+        "key": "status",
+        "value": "Status"
+    },
+    {
+        "key": "username",
+        "value": "Username"
+    },
+    {
+        "key": "password",
+        "value": "Password"
+    },
+    {
+        "key": "no_options",
+        "value": "No options"
+    },
+    {
+        "key": "hello",
+        "value": "Hello"
+    },
+    {
+        "key": "deliveryNote",
+        "value": "Delivery Note"
+    },
+    {
+        "key": "deliveryNotes",
+        "value": "Delivery Notes"
+    },
+
+    {
+        "key": "order",
+        "value": "Order"
+    },
+    {
+        "key": "pex",
+        "value": "PEX"
+    },
+    {
+        "key": "product",
+        "value": "Product"
+    },
+    {
+        "key": "customer",
+        "value": "Customer"
+    },
+    {
+        "key": "other",
+        "value": "Other"
+    },
+    {
+        "key": "list",
+        "value": "List"
+    },
+    {
+        "key": "genericEntities",
+        "value": "Generic Entities"
+    },
+    {
+        "key": "add",
+        "value": "Add"
+    },
+    {
+        "key": "update",
+        "value": "Update"
+    },
+    {
+        "key": "delete",
+        "value": "Delete"
+    },
+    {
+        "key": "view",
+        "value": "View"
+    },
+    {
+        "key": "print",
+        "value": "Print"
+    },
+    {
+        "key": "shippers",
+        "value": "Shippers"
+    },
+    {
+        "key": "carriers",
+        "value": "Carriers"
+    },
+    {
+        "key": "destinations",
+        "value": "Destinations"
+    },
+    {
+        "key": "id",
+        "value": "ID"
+    },
+    {
+        "key": "date",
+        "value": "Date"
+    },
+    {
+        "key": "hour",
+        "value": "Hour"
+    },
+    {
+        "key": "number",
+        "value": "Number"
+    },
+    {
+        "key": "customer",
+        "value": "Customer"
+    },
+    {
+        "key": "product",
+        "value": "Product"
+    },
+    {
+        "key": "vehicle",
+        "value": "Vehicle"
+    },
+    {
+        "key": "trailer",
+        "value": "Trailer"
+    },
+    {
+        "key": "tare",
+        "value": "Tare"
+    },
+    {
+        "key": "invoiced",
+        "value": "Invoiced"
+    },
+    {
+        "key": "invoice_number",
+        "value": "Invoice Number"
+    },
+    {
+        "key": "back",
+        "value": "Back"
+    },
+    {
+        "key": "save",
+        "value": "Save"
+    },
+    {
+        "key": "Form.readOnly",
+        "value": "Read only"
+    },
+    {
+        "key": "shipping_point",
+        "value": "Shipping Point"
+    },
+    {
+        "key": "destination",
+        "value": "Destination"
+    },
+    {
+        "key": "customer_order",
+        "value": "Customer Order"
+    },
+    {
+        "key": "vehicle_registration",
+        "value": "Vehicle Registration"
+    },
+    {
+        "key": "gross",
+        "value": "Gross"
+    },
+    {
+        "key": "net",
+        "value": "Net"
+    },
+    {
+        "key": "carrier",
+        "value": "Carrier"
+    },
+    {
+        "key": "edit",
+        "value": "Edit"
+    },
+    {
+        "key": "selectCustomer",
+        "value": "Select Customer"
+    },
+    {
+        "key": "selectProduct",
+        "value": "Select Product"
+    },
+    {
+        "key": "selectDestination",
+        "value": "Select Destination"
+    },
+    {
+        "key": "error.unknown",
+        "value": "Unknown error, please contact the administrator"
+    },
+    {
+        "key": "error.badRequest",
+        "value": "Form data is not valid"
+    },
+    {
+        "key": "error.notFound",
+        "value": "Resource not found"
+    },
+    {
+        "key": "error.unauthorized",
+        "value": "You are not authorized to perform this action"
+    },
+    {
+        "key": "error.internalServerError",
+        "value": "Internal server error, please contact the administrator"
+    },
+    {
+        "key": "selectTrailer",
+        "value": "Select or add Trailer"
+    },
+    {
+        "key": "selectVehicleRegistration",
+        "value": "Select or add Vehicle Registration"
+    },
+    {
+        "key": "code",
+        "value": "Code"
+    },
+    {
+        "key": "customer_order_number",
+        "value": "Customer Order N°"
+    },
+    {
+        "key": "quantity_t",
+        "value": "Quantity (t)"
+    },
+    {
+        "key": "trucks_per_day",
+        "value": "Trucks per day"
+    },
+    {
+        "key": "quantity_per_day",
+        "value": "Quantity per day"
+    },
+    {
+        "key": "from",
+        "value": "From"
+    },
+    {
+        "key": "to",
+        "value": "To"
+    },
+    {
+        "key": "quantity_consumed",
+        "value": "Quantity Consumed"
+    },
+    {
+        "key": "end_of_consumption",
+        "value": "End of Consumption"
+    },
+    {
+        "key": "selectOne",
+        "value": "Select one"
+    },
+    {
+        "key": "order_number",
+        "value": "Order Number"
+    },
+    {
+        "key": "quantity_eur",
+        "value": "Quantity (€)"
+    },
+    {
+        "key": "quantity",
+        "value": "Quantity"
+    },
+    {
+        "key": "selectCustomerOrder",
+        "value": "Select Customer Order"
+    },
+    {
+        "key": "noCustomerOrders",
+        "value": "No Customer Orders"
+    },
+    {
+        "key": "usersList",
+        "value": "Users List"
+    },
+    {
+        "key": "user",
+        "value": "User"
+    },
+    {
+        "key": "goToDeliveryNotesList",
+        "value": "Go to Delivery Notes List"
+    },
+    {
+        "key": "repeatPassword",
+        "value": "Repeat Password"
+    },
+    {
+        "key": "selectRole",
+        "value": "Select Role"
+    },
+    {
+        "key": "selectPex",
+        "value": "Select Pex"
+    },
+    {
+        "key": "address1",
+        "value": "Address 1"
+    },
+    {
+        "key": "address2",
+        "value": "Address 2"
+    },
+    {
+        "key": "postal_code",
+        "value": "Postal Code"
+    },
+    {
+        "key": "country",
+        "value": "Country"
+    },
+    {
+        "key": "e_help_text",
+        "value": "Segment associated to the company"
+    },
+    {
+        "key": "f_help_text",
+        "value": "Segment associated to the factory"
+    },
+    {
+        "key": "o_help_text",
+        "value": "Segment associated to the origin"
+    },
+    {
+        "key": "postalCode",
+        "value": "Postal Code"
+    },
+    {
+        "key": "reference1",
+        "value": "Reference 1"
+    },
+    {
+        "key": "reference2",
+        "value": "Reference 2"
+    },
+    {
+        "key": "ce_code",
+        "value": "CE Code"
+    },
+    {
+        "key": "n_code",
+        "value": "N Code"
+    },
+    {
+        "key": "ukca_code",
+        "value": "UKCA Code"
+    },
+    {
+        "key": "customers",
+        "value": "Customers"
+    },
+    {
+        "key": "vat",
+        "value": "VAT"
+    },
+    {
+        "key": "shipping_points",
+        "value": "Shipping Points"
+    },
+    {
+        "key": "template",
+        "value": "Template"
+    },
+    {
+        "key": "actions",
+        "value": "Actions"
+    },
+    {
+        "key": "application",
+        "value": "Application"
+    },
+    {
+        "key": "masaveu_optimization_front",
+        "value": "Masaveu"
+    },
+    {
+        "key": "shipper",
+        "value": "Shipper"
+    },
+    {
+        "key": "error.fieldsAreNotValid",
+        "value": "This fields are not valid:"
+    },
+    {
+        "key": "from_date",
+        "value": "From"
+    },
+    {
+        "key": "to_date",
+        "value": "To"
+    },
+    {
+        "key": "Role.admin",
+        "value": "Administrator"
+    },
+    {
+        "key": "Role.muk_billing",
+        "value": "MUK billing"
+    },
+    {
+        "key": "Role.external_expedition",
+        "value": "External Expedition"
+    },
+    {
+        "key": "Role.external_billing",
+        "value": "External Billing"
+    },
+    {
+        "key": "Role.muk_guest",
+        "value": "MUK guest"
+    },
+    {
+        "key": "selectShipper",
+        "value": "Select Shipper"
+    },
+    {
+        "key": "email",
+        "value": "Email"
+    },
+    {
+        "key": "invoice",
+        "value": "Invoice"
+    },
+    {
+        "key": "yes",
+        "value": "Yes"
+    },
+    {
+        "key": "no",
+        "value": "No"
+    },
+    {
+        "key": "ForgotPassword.successMessage",
+        "value": "An email has been sent to your email address with instructions to reset your password."
+    },
+    {
+        "key": "repeat_password",
+        "value": "Repeat Password"
+    },
+    {
+        "key": "RecoverPassword.successMessage",
+        "value": "Your password has been changed successfully. Redirecting to Login..."
+    },
+    {
+        "key": "RecoverPassword.repeatPasswordError",
+        "value": "Passwords do not match"
+    },
+    {
+        "key": "noOptionsAvailable",
+        "value": "No options available"
+    },
+    {
+        "key": "selectCarrier",
+        "value": "Select Carrier"
+    },
+    {
+        "key": "back_to_login",
+        "value": "Back to Login"
+    },
+    {
+        "key": "bill",
+        "value": "Bill"
+    },
+    {
+        "key": "confirmDiscardChanges",
+        "value": "Are you sure you want to discard the changes?"
+    },
+    {
+        "key": "saveAndNew",
+        "value": "Save & New"
+    },
+    {
+        "key": "consumed_t",
+        "value": "Consumed (t)"
+    }
+]

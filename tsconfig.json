@@ -1,0 +1,44 @@
+{
+    "compilerOptions": {
+        // Target latest version of ECMAScript.
+        "target": "esnext",
+        "module": "es2020",
+        // Search under node_modules for non-relative imports.
+        "moduleResolution": "node",
+        // Process & infer types from .js files.
+        "allowJs": true,
+        // Don't emit; allow Babel to transform files.
+        "noEmit": true,
+        // Enable strictest settings like strictNullChecks & noImplicitAny.
+        "strict": true,
+        // Disallow features that require cross-file information for emit.
+        "isolatedModules": true,
+        // Import non-ES modules as default imports.
+        "esModuleInterop": true,
+
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "jsx": "react-jsx",
+        "baseUrl": "./src",
+        "paths": {
+            "@src/*": ["/*"],
+            "@config/*": ["config/*"],
+            "@components/*": ["components/*"],
+            "@assets/*": ["assets/*"],
+            "@interfaces/*": ["interfaces/*"],
+            "@styles/*": ["styles/*"],
+            "@pages/*": ["components/pages/*"],
+            "@utils/*": ["utils/*"],
+            "@context/*": ["context/*"],
+            "@hooks/*": ["hooks/*"],
+            "@lang/*": ["lang/*"],
+            "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"],
+            "@icons/*": ["components/basic/icons/*"],
+            "@data/*": ["data/*"]
+        }
+    },
+    "include": ["src/**/*.tsx", "src/**/*.ts"]
+}

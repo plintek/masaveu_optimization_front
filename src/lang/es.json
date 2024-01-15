@@ -1,0 +1,274 @@
+[
+    {
+        "key": "ChangePassword.contraseña_restaurada_con_éxito.",
+        "value": "Contraseña restaurada con éxito. Inicia sesión con tus nuevos datos."
+    },
+    {
+        "key": "ChangePassword.introduce_tu_nueva_contraseña",
+        "value": "Introduce tu nueva contraseña para tu cuenta."
+    },
+    {
+        "key": "ChangePassword.reestablecer_contraseña",
+        "value": "Reestablecer contraseña"
+    },
+    {
+        "key": "ChangePassword.volver_a",
+        "value": "Volver a"
+    },
+    {
+        "key": "ChangePassword.iniciar_sesión",
+        "value": "Iniciar sesión"
+    },
+    {
+        "key": "Admin.UsersList.listado_de_usuarios",
+        "value": "Listado de usuarios"
+    },
+    {
+        "key": "Admin.UsersList.descargar_csv",
+        "value": "Descargar CSV"
+    },
+    {
+        "key": "Admin.UsersList.no_se_han_encontrado",
+        "value": "No se han encontrado usuarios."
+    },
+    {
+        "key": "ForgotPassword.te_hemos_enviado_un",
+        "value": "Te hemos enviado un correo electrónico con un enlace para restablecer tu contraseña"
+    },
+    {
+        "key": "ForgotPassword.introduce_la_dirección_de",
+        "value": "Introduce la dirección de correo electrónico en la que deseas recibir la información para restablecer tu contraseña."
+    },
+    {
+        "key": "ForgotPassword.reestablecer_contraseña",
+        "value": "Reestablecer contraseña"
+    },
+    {
+        "key": "ForgotPassword.volver_a",
+        "value": "Volver a"
+    },
+    {
+        "key": "ForgotPassword.iniciar_sesión",
+        "value": "Iniciar sesión"
+    },
+    {
+        "key": "Login.¿no_tienes_una_cuenta?",
+        "value": "¿No tienes una cuenta?"
+    },
+    {
+        "key": "Login.regístrarse",
+        "value": "Regístrarse"
+    },
+    {
+        "key": "Login.registro_realizado_correctamente.",
+        "value": "Registro realizado correctamente."
+    },
+    {
+        "key": "Login.olvidé_mi_contraseña",
+        "value": "Olvidé mi contraseña"
+    },
+    {
+        "key": "Login.iniciar_sesión",
+        "value": "Iniciar sesión"
+    },
+    {
+        "key": "Login.o_iniciar_sesión_con...",
+        "value": "O iniciar sesión con..."
+    },
+    {
+        "key": "Maitenance.mantenimiento",
+        "value": "Mantenimiento"
+    },
+    {
+        "key": "Maitenance.la_página_está_en",
+        "value": "La página está en mantenimiento. Por favor, vuelve más tarde."
+    },
+    {
+        "key": "Maitenance.disculpa_las_molestias.",
+        "value": "Disculpa las molestias."
+    },
+    {
+        "key": "NotFound.la_página_no_ha",
+        "value": "La página no ha sido encontrada"
+    },
+    {
+        "key": "Register.¿tienes_una_cuenta?",
+        "value": "¿Tienes una cuenta?"
+    },
+    {
+        "key": "Register.iniciar_sesión",
+        "value": "Iniciar sesión"
+    },
+    {
+        "key": "Register.he_leído_y_acepto",
+        "value": "He leído y acepto la"
+    },
+    {
+        "key": "Register.política_de_privacidad",
+        "value": "Política de privacidad"
+    },
+    {
+        "key": "Register.registrarse",
+        "value": "Registrarse"
+    },
+    {
+        "key": "User.Profile.ProfileForm.actualizar",
+        "value": "Actualizar"
+    },
+    {
+        "key": "User.Profile.ajustes_de_mi_perfil",
+        "value": "Ajustes de mi perfil"
+    },
+    {
+        "key": "User.Profile.ProfileForm.datos_del_usuario_actualizados",
+        "value": "Datos del usuario actualizados correctamente"
+    },
+    {
+        "key": "User.Profile.información_personal",
+        "value": "Información personal"
+    },
+    {
+        "key": "User.Security.SecurityForm.actualizar",
+        "value": "Actualizar"
+    },
+    {
+        "key": "User.Security.SecurityForm.contraseña_actualizada_correctamente.",
+        "value": "Contraseña actualizada correctamente."
+    },
+    {
+        "key": "User.Security.seguridad",
+        "value": "Seguridad"
+    },
+    {
+        "key": "User.Security.actualizar_contraseña",
+        "value": "Actualizar contraseña"
+    },
+    {
+        "key": "User.Security.si_crees_que_alguien",
+        "value": "Si crees que alguien que no eres tú pudo haber accedido a tu cuenta sin permiso, restablece tu contraseña de Three time health is happiness. No obstante, te recomendamos que cambies la contraseña frecuentemente para evitar posibles suplantaciones y fraudes."
+    },
+    {
+        "key": "User.Profile.ProfileForm.ProfileFormInputs.apellido",
+        "value": "Apellido"
+    },
+    {
+        "key": "User.Profile.ProfileForm.ProfileFormInputs.dirección_de_correo",
+        "value": "Dirección de correo"
+    },
+    {
+        "key": "User.Profile.ProfileForm.ProfileFormInputs.teléfono",
+        "value": "Teléfono"
+    },
+    {
+        "key": "ChangePassword.contraseña",
+        "value": "Contraseña"
+    },
+    {
+        "key": "Admin.Languages.nombre",
+        "value": "Nombre"
+    },
+    {
+        "key": "ChangePassword.repite_la_contraseña",
+        "value": "Repite la contraseña"
+    },
+    {
+        "key": "Register.tu_nombre",
+        "value": "Tu nombre"
+    },
+    {
+        "key": "Register.dirección_de_correo",
+        "value": "Dirección de correo"
+    },
+    {
+        "key": "Register.contraseña",
+        "value": "Contraseña"
+    },
+    {
+        "key": "Register.confirmar_contraseña",
+        "value": "Confirmar contraseña"
+    },
+    {
+        "key": "Login.dirección_de_correo",
+        "value": "Dirección de correo"
+    },
+    {
+        "key": "Login.contraseña",
+        "value": "Contraseña"
+    },
+    {
+        "key": "Login.recordarme",
+        "value": "Recordarme"
+    },
+    {
+        "key": "User.Security.SecurityForm.SecurityFormInputs.contraseña_actual",
+        "value": "Contraseña actual"
+    },
+    {
+        "key": "User.Security.SecurityForm.SecurityFormInputs.nueva_contraseña",
+        "value": "Nueva contraseña"
+    },
+    {
+        "key": "User.Security.SecurityForm.SecurityFormInputs.confirmar_contraseña",
+        "value": "Confirmar contraseña"
+    },
+    {
+        "key": "ForgotPassword.dirección_de_correo",
+        "value": "Dirección de correo"
+    },
+    {
+        "key": "User.Billing.BillingForm.BillingFormInputs.soy_autónomo",
+        "value": "Soy autónomo"
+    },
+    {
+        "key": "User.Billing.BillingForm.BillingFormInputs.nombre_comercial",
+        "value": "Nombre comercial"
+    },
+    {
+        "key": "User.Billing.BillingForm.BillingFormInputs.número_de_cif/nif/id",
+        "value": "Número de CIF/NIF/ID"
+    },
+    {
+        "key": "User.Billing.BillingForm.BillingFormInputs.cif/nif/id",
+        "value": "CIF/NIF/ID"
+    },
+    {
+        "key": "User.Billing.BillingForm.BillingFormInputs.fecha_de_nacimiento",
+        "value": "Fecha de nacimiento"
+    },
+    {
+        "key": "User.Billing.BillingForm.BillingFormInputs.dirección",
+        "value": "Dirección"
+    },
+    {
+        "key": "User.Billing.BillingForm.BillingFormInputs.código_postal",
+        "value": "Código postal"
+    },
+    {
+        "key": "User.Billing.BillingForm.BillingFormInputs.población",
+        "value": "Población"
+    },
+    {
+        "key": "User.Billing.BillingForm.BillingFormInputs.provincia",
+        "value": "Provincia"
+    },
+    {
+        "key": "User.Billing.BillingForm.BillingFormInputs.país",
+        "value": "País"
+    },
+    {
+        "key": "User.Billing.BillingForm.BillingFormInputs.cuenta_bancaria_(iban)",
+        "value": "Cuenta bancaria (IBAN)"
+    },
+    {
+        "key": "User.Billing.BillingForm.BillingFormInputs.email_de_paypal",
+        "value": "Email de Paypal"
+    },
+    {
+        "key": "Admin.PaymentsList.PaymentsListTable.título",
+        "value": "Título"
+    },
+    {
+        "key": "address",
+        "value": "Address"
+    }
+]
