@@ -18,6 +18,10 @@ class DateUtility {
         const month = TextUtility.zeroPad(date.getMonth() + 1);
         const year = date.getFullYear();
 
+        if (!date || isNaN(date.getTime()) || date.getFullYear() < 1980) {
+            return "";
+        }
+
         return `${day}-${month}-${year}`;
     };
 

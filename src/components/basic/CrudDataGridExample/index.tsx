@@ -53,9 +53,11 @@ interface CrudDataGridProps<T> {
     loading?: boolean;
     showDeleteButton?: boolean;
     extraToolbarElements?: React.ReactNode;
+    allData?: AnyObject;
+    updateAllData?: (allData: AnyObject) => void;
 }
 
-function CrudDataGridExample<T>({
+function CrudDataGrid<T>({
     entityName = "row",
     apiEndpoint,
     columns,
@@ -78,6 +80,8 @@ function CrudDataGridExample<T>({
     loading = false,
     showDeleteButton = true,
     extraToolbarElements,
+    allData = {},
+    updateAllData,
 }: CrudDataGridProps<T>) {
     type DataType = T & { id: number };
     const data =
@@ -153,19 +157,25 @@ function CrudDataGridExample<T>({
         });
     };
 
-    const handleDeleteClick = (id: GridRowId) => () => {
+    const handleDeleteClick = (id: GridRowId) => async () => {
         if (
             window.confirm(
                 `Are you sure you want to delete ${entityName} ${id}?`
             )
         ) {
-            apiEndpoint &&
-                ApiUtility.request({
-                    url: `${apiEndpoint}/${id}`,
-                    method: "DELETE",
-                });
+            const saveAllData = structuredClone(allData);
+            saveAllData[entityName] = saveAllData[entityName].filter(
+                (row: GridRowModel) => row.id !== id
+            );
+
+            const update = await ApiUtility.request({
+                url: "utils/save-data/",
+                method: "POST",
+                data: saveAllData,
+            });
             rows && setRows(rows.filter((row) => row.id !== id));
             onDeleteRow?.(id as number);
+            updateAllData?.(saveAllData);
         }
     };
 
@@ -187,28 +197,30 @@ function CrudDataGridExample<T>({
         }
     };
 
-    const processRowUpdate = (newRow: GridRowModel) => {
+    const processRowUpdate = async (newRow: GridRowModel) => {
         const isNew = newRow.isNew !== false;
+        const saveAllData = structuredClone(allData);
 
         if (isNew) {
-            apiEndpoint &&
-                ApiUtility.request({
-                    url: apiEndpoint,
-                    method: "POST",
-                    data: newRow,
-                });
+            const copyNewRow = structuredClone(newRow);
+            saveAllData[entityName].push(copyNewRow);
         } else {
-            const putRow = { ...newRow };
-            delete putRow.isNew;
-            delete putRow.id;
-
-            apiEndpoint &&
-                ApiUtility.request({
-                    url: `${apiEndpoint}/${newRow.id}`,
-                    method: "PUT",
-                    data: putRow,
-                });
+            saveAllData[entityName] = saveAllData[entityName].map(
+                (row: GridRowModel) => {
+                    if (row.id === newRow.id) {
+                        const copyNewRow = structuredClone(newRow);
+                        return copyNewRow;
+                    }
+                    return row;
+                }
+            );
         }
+
+        const update = await ApiUtility.request({
+            url: "utils/save-data/",
+            method: "POST",
+            data: saveAllData,
+        });
 
         const updatedRow: GridRowModel = { ...newRow, isNew: false };
         if (rows) {
@@ -218,6 +230,8 @@ function CrudDataGridExample<T>({
                 ) as (DataType & { isNew?: boolean })[]
             );
         }
+
+        updateAllData?.(saveAllData);
 
         onSavingRow?.(
             updatedRow as DataType & { isNew?: boolean },
@@ -442,4 +456,4 @@ function CrudDataGridExample<T>({
     );
 }
 
-export default CrudDataGridExample;
+export default CrudDataGrid;
