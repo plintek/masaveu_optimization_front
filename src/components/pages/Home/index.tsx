@@ -21,6 +21,7 @@ import bbox from "@turf/bbox";
 import { changeFitBounds } from "@context/Map/Actions";
 import { useMapDispatch } from "@context/Map/Context";
 import { PathStyleExtension } from "@deck.gl/extensions";
+import AlertBox from "@components/basic/AlertBox";
 
 export interface HomeTab {
     id: string;
@@ -86,6 +87,9 @@ function Home(): ReactElement {
     const [layers, setLayers] = useState<AnyType[]>([]);
     const [popupProps, setPopupProps] = useState<PopupProps>();
 
+    const [errorVisible, setErrorVisible] = useState<boolean>(false);
+    const [errorText, setErrorText] = useState<string>("");
+
     const mapDispatcher = useMapDispatch();
 
     const handleExecuteProcess = async () => {
@@ -98,6 +102,15 @@ function Home(): ReactElement {
                 force_clean: forceClean,
             },
         });
+
+        if (resultData.error) {
+            setErrorText(resultData.error);
+            setErrorVisible(true);
+            setLoading(false);
+            return;
+        }
+
+        setErrorVisible(false);
 
         let maxScore = resultData.vehicle_list.reduce(
             (max: number, vehicle: AnyObject) => {
@@ -795,6 +808,13 @@ function Home(): ReactElement {
                     >
                         Execute process
                     </LoadingButton>
+                    <AlertBox
+                        severity="error"
+                        visible={errorVisible}
+                        setVisible={setErrorVisible}
+                    >
+                        {errorText}
+                    </AlertBox>
                 </Container>
             </Container>
 
