@@ -413,7 +413,7 @@ function CrudDataGrid<T>({
                 <DataGrid
                     rows={rows}
                     columns={formattedColumns}
-                    editMode="row"
+                    editMode="cell"
                     rowSelectionModel={selectionModel}
                     onRowSelectionModelChange={handleSelectionModelChange}
                     rowModesModel={rowModesModel}
