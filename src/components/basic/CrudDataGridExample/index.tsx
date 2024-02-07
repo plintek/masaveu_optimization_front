@@ -335,20 +335,7 @@ function CrudDataGrid<T>({
                 }
 
                 const actionColumns = [];
-                if (
-                    !showEditButtonFunction ||
-                    showEditButtonFunction(rows!.find((row) => row.id === id)!)
-                ) {
-                    actionColumns.push(
-                        <GridActionsCellItem
-                            icon={<EditIcon />}
-                            label="Edit"
-                            className="textPrimary"
-                            onClick={handleEditClick(id)}
-                            color="inherit"
-                        />
-                    );
-                }
+
                 if (showDeleteButton) {
                     actionColumns.push(
                         <GridActionsCellItem
@@ -413,7 +400,7 @@ function CrudDataGrid<T>({
                 <DataGrid
                     rows={rows}
                     columns={formattedColumns}
-                    editMode="cell"
+                    editMode={isAddingRow ? "row" : "cell"}
                     rowSelectionModel={selectionModel}
                     onRowSelectionModelChange={handleSelectionModelChange}
                     rowModesModel={rowModesModel}
