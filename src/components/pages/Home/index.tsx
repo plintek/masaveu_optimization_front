@@ -22,6 +22,7 @@ import { changeFitBounds } from "@context/Map/Actions";
 import { useMapDispatch } from "@context/Map/Context";
 import { PathStyleExtension } from "@deck.gl/extensions";
 import AlertBox from "@components/basic/AlertBox";
+import HerePolylineUtility from "../../../utils/HerePolyline.utility";
 
 export interface HomeTab {
     id: string;
@@ -132,11 +133,16 @@ function Home(): ReactElement {
                 return a.score - b.score;
             }
         );
+        const sortedInversedVehicles = formattedVehicleList.sort(
+            (a: AnyObject, b: AnyObject) => {
+                return b.score - a.score;
+            }
+        );
 
         setResult(sortedVehicles);
         setResultBest(resultData.best_vehicle);
 
-        const vehiclesFeatures = formattedVehicleList.map(
+        const vehiclesFeatures = sortedInversedVehicles.map(
             (vehicle: AnyObject) => {
                 return {
                     type: "Feature",
@@ -156,6 +162,7 @@ function Home(): ReactElement {
                             vehicle.last_trimester_order_count,
                         last_trimester_mileage_count:
                             vehicle.last_trimester_mileage_count,
+                        route_to_origin: vehicle.route_to_origin,
                     },
                 };
             }
@@ -205,16 +212,11 @@ function Home(): ReactElement {
                         type: "Feature",
                         geometry: {
                             type: "LineString",
-                            coordinates: [
-                                [
-                                    vehicle.geometry.coordinates[0],
-                                    vehicle.geometry.coordinates[1],
-                                ],
-                                [
-                                    resultData.order.origin.lon,
-                                    resultData.order.origin.lat,
-                                ],
-                            ],
+                            coordinates: HerePolylineUtility.decode(
+                                JSON.parse(vehicle.properties.route_to_origin)[
+                                    "routes"
+                                ][0]["sections"][0]["polyline"]
+                            ).polyline,
                         },
                         properties: {
                             isBestVehicle:
@@ -227,6 +229,11 @@ function Home(): ReactElement {
             ],
         };
 
+        console.log(
+            "linesBetweenVehiclesAndOrder",
+            linesBetweenVehiclesAndOrder
+        );
+
         const lineBetweenDestinationAndOrigin = {
             type: "FeatureCollection",
             features: [
@@ -234,16 +241,11 @@ function Home(): ReactElement {
                     type: "Feature",
                     geometry: {
                         type: "LineString",
-                        coordinates: [
-                            [
-                                resultData.order.origin.lon,
-                                resultData.order.origin.lat,
-                            ],
-                            [
-                                resultData.order.destination.lon,
-                                resultData.order.destination.lat,
-                            ],
-                        ],
+                        coordinates: HerePolylineUtility.decode(
+                            JSON.parse(resultData.order.route)["routes"][0][
+                                "sections"
+                            ][0]["polyline"]
+                        ).polyline,
                     },
                     properties: {
                         id: resultData.order.uid,
@@ -260,7 +262,7 @@ function Home(): ReactElement {
                 pickable: true,
                 getLineWidth: (d: AnyType) => {
                     if (d.properties.isBestVehicle) {
-                        return 80;
+                        return 90;
                     }
                     return 50;
                 },
@@ -268,19 +270,10 @@ function Home(): ReactElement {
                 lineWidthUnits: "meters",
                 getLineColor: (d: AnyType) => {
                     if (d.properties.isBestVehicle) {
-                        return [0, 255, 0, 255];
+                        return [0, 0, 255, 120];
                     }
                     return [160, 160, 160, 255];
                 },
-                getDashArray: (d: AnyType) => {
-                    if (d.properties.isBestVehicle) {
-                        return [0, 0];
-                    }
-                    return [3, 2];
-                },
-                dashJustified: true,
-                dashGapPickable: true,
-                extensions: [new PathStyleExtension({ dash: true })],
             }),
             new GeoJsonLayer({
                 id: "lines",
@@ -334,11 +327,15 @@ function Home(): ReactElement {
                 getRadius: 100,
                 getFillColor: (d: AnyType) => {
                     const scoreRatio = d.properties.scoreRatio;
+                    if (d.properties.uid === resultData.best_vehicle.uid) {
+                        return [0, 0, 255, 255];
+                    }
                     if (scoreRatio < 0.3) {
                         return [0, 255, 0, 255];
                     } else if (scoreRatio < 0.7) {
                         return [255, 255, 0, 255];
                     }
+
                     return [255, 0, 0, 255];
                 },
                 onHover: (info: any) => {
