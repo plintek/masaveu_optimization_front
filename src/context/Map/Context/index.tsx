@@ -46,6 +46,7 @@ export interface MapState {
     isLoading: boolean;
     viewState: ViewState;
     boundaries: BoundariesMap;
+    fitBounds?: number[];
 }
 
 const initialState: MapState = {

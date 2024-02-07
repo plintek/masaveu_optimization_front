@@ -13,6 +13,14 @@ import { AnyObject } from "@interfaces/basic/AnyObject.interface";
 import CrudDataGridExample from "@components/basic/CrudDataGridExample";
 import ApiUtility from "@utils/Api.utility";
 import DateUtility from "@utils/Date.utility";
+import Map from "@components/basic/Map";
+import { GeoJsonLayer } from "@deck.gl/layers";
+import { PopupProps } from "@components/basic/Map/components/Popup";
+import DefaultPopupData from "@components/basic/Map/components/DefaultPopupContent";
+import bbox from "@turf/bbox";
+import { changeFitBounds } from "@context/Map/Actions";
+import { useMapDispatch } from "@context/Map/Context";
+import { PathStyleExtension } from "@deck.gl/extensions";
 
 export interface HomeTab {
     id: string;
@@ -75,6 +83,10 @@ function Home(): ReactElement {
     const [result, setResult] = useState<AnyObject[]>([]);
     const [resultBest, setResultBest] = useState<AnyObject>();
     const [noVehicles, setNoVehicles] = useState<boolean>(false);
+    const [layers, setLayers] = useState<AnyType[]>([]);
+    const [popupProps, setPopupProps] = useState<PopupProps>();
+
+    const mapDispatcher = useMapDispatch();
 
     const handleExecuteProcess = async () => {
         setLoading(true);
@@ -87,10 +99,214 @@ function Home(): ReactElement {
             },
         });
 
-        setResult(resultData.vehicle_list);
+        let maxScore = resultData.vehicle_list.reduce(
+            (max: number, vehicle: AnyObject) => {
+                return vehicle.score > max ? vehicle.score : max;
+            },
+            0
+        );
+        const formattedVehicleList = resultData.vehicle_list.map(
+            (vehicle: AnyObject, index: number) => {
+                return {
+                    ...vehicle,
+                    id: vehicle.uid,
+                    scoreRatio: vehicle.score / maxScore,
+                };
+            }
+        );
+        const sortedVehicles = formattedVehicleList.sort((a: AnyObject, b: AnyObject) => {
+            return a.score - b.score;
+        });
+
+        setResult(sortedVehicles);
         setResultBest(resultData.best_vehicle);
+
+        const vehiclesFeatures = formattedVehicleList.map((vehicle: AnyObject) => {
+            return {
+               type: "Feature",
+                geometry: {
+                     type: "Point",
+                     coordinates: [vehicle.geolocation.lon, vehicle.geolocation.lat],
+                },
+                properties: {
+                    id: vehicle.uid,
+                    license_plate: vehicle.license_plate,
+                    scoreRatio: vehicle.scoreRatio,
+                    score: vehicle.score,
+                    last_trimester_order_count: vehicle.last_trimester_order_count,
+                    last_trimester_mileage_count: vehicle.last_trimester_mileage_count,
+                },
+            };
+        });
+
+        const orderGeojson = {
+            type: "FeatureCollection",
+            features: [
+                {
+                    type: "Feature",
+                    geometry: {
+                        type: "Point",
+                        coordinates: [resultData.order.origin.lon, resultData.order.origin.lat],
+                    },
+                    properties: {
+                        type: "origin"
+                    },
+                },
+                {
+                    type: "Feature",
+                    geometry: {
+                        type: "Point",
+                        coordinates: [resultData.order.destination.lon, resultData.order.destination.lat],
+                    },
+                    properties: {
+                        type: "destination"
+                    },
+                },
+            ],
+        };
+        const vehiclesGeojson = {
+            type: "FeatureCollection",
+            features: vehiclesFeatures,
+        };
+
+        const linesBetweenVehiclesAndOrder = {
+            type: "FeatureCollection",
+            features: [...vehiclesFeatures.map((vehicle: AnyObject) => {
+                return {
+                    type: "Feature",
+                    geometry: {
+                        type: "LineString",
+                        coordinates: [
+                            [vehicle.geometry.coordinates[0], vehicle.geometry.coordinates[1]],
+                            [resultData.order.origin.lon, resultData.order.origin.lat],
+                        ],
+                    },
+                    properties: {
+                        id: vehicle.id,
+                        type: "vehicle",
+                    },
+                };
+            }),
+            {
+                type: "Feature",
+                geometry: {
+                    type: "LineString",
+                    coordinates: [
+                        [resultData.order.origin.lon, resultData.order.origin.lat],
+                        [resultData.order.destination.lon, resultData.order.destination.lat],
+                    ],
+                },
+                properties: {
+                    id: resultData.order.uid,
+                    type: "order",
+                },
+            },
+        ],
+        };
+
+        const layers = [
+            new GeoJsonLayer({
+                id: "lines",
+                data: linesBetweenVehiclesAndOrder,
+                pickable: true,
+                getLineWidth: 50,
+                lineWidthMinPixels: 2,
+                lineWidthUnits: "meters",
+                getLineColor: (d: AnyType) => {
+                    if(d.properties.type === "order") {
+                        return [50, 50, 50, 255];
+                    }
+                    return [120, 120, 120, 255];
+                },
+                getDashArray: [3, 3],
+                dashJustified: true,
+                dashGapPickable: true,
+                extensions: [new PathStyleExtension({dash: true})]
+            }),
+            new GeoJsonLayer({
+                id: "order",
+                data: orderGeojson,
+                pickable: true,
+                stroked: true,
+                filled: true,
+                extruded: true,
+                pointRadiusMinPixels: 5,
+                getRadius: 100,
+                getFillColor: [50, 50, 50, 255],
+                onHover: (info: any) => {
+                    if (info.object) {
+                        const { x, y } = info;
+                        let extraProps = info.object.properties;
+
+                        setPopupProps({
+                            position: { x, y },
+                            visible: true,
+                            content: (
+                                <DefaultPopupData
+                                    data={{
+                                        entityName: "vehicles",
+                                        extraProps,
+                                    }}
+                                />
+                            ),
+                        });
+                    }
+                },
+            }),
+            new GeoJsonLayer({
+                id: "vehicles",
+                data: vehiclesGeojson,
+                pickable: true,
+                stroked: true,
+                filled: true,
+                extruded: true,
+                pointRadiusMinPixels: 5,
+                getRadius: 100,
+                getFillColor: (d: AnyType) => {
+                    const scoreRatio = d.properties.scoreRatio;
+                    if(scoreRatio < 0.3) {
+                        return [0, 255, 0, 255];
+                    } else if(scoreRatio < 0.7) {
+                        return [255, 255, 0, 255];
+                    }
+                    return [255, 0, 0, 255];
+                },
+                onHover: (info: any) => {
+                    if (info.object) {
+                        const { x, y } = info;
+                        let extraProps = info.object.properties;
+                        delete extraProps.scoreRatio;
+
+                        setPopupProps({
+                            position: { x, y },
+                            visible: true,
+                            content: (
+                                <DefaultPopupData
+                                    data={{
+                                        entityName: "vehicles",
+                                        extraProps,
+                                    }}
+                                />
+                            ),
+                        });
+                    }
+                },
+            }),
+
+        ];
+
+        setLayers(layers);
+
+        const bboxCalculation = bbox(orderGeojson);
+
+        setTimeout(() => {
+            changeFitBounds(mapDispatcher, bboxCalculation);
+        }, 1000);
+       
         if (!resultData.best_vehicle) {
             setNoVehicles(true);
+        } else {
+            setNoVehicles(false);
         }
         setLoading(false);
     };
@@ -267,13 +483,13 @@ function Home(): ReactElement {
             field: "last_trimester_order_count",
             headerName: "Last Trimester Order Count",
             type: "number",
-            width: 150,
+            width: 200,
         },
         {
             field: "last_trimester_mileage_count",
             headerName: "Last Trimester Mileage Count",
             type: "number",
-            width: 150,
+            width: 200,
         },
     ].map((column) => ({
         ...column,
@@ -301,14 +517,25 @@ function Home(): ReactElement {
             field: "score",
             headerName: "Score",
             width: 150,
+            type: "number",
         },
     ];
 
     const ordersColumns = [
         { field: "uid", headerName: "UID", width: 150 },
         { field: "status", headerName: "Status", width: 150 },
-        { field: "deadline_date", headerName: "Deadline Date", width: 150 },
-        { field: "delivery_date", headerName: "Delivery Date", width: 150 },
+        {
+            field: "deadline_date",
+            headerName: "Deadline Date",
+            width: 150,
+            type: "datetime",
+        },
+        {
+            field: "delivery_date",
+            headerName: "Delivery Date",
+            width: 150,
+            type: "datetime",
+        },
         {
             field: "assigned_truck",
             headerName: "Assigned Truck",
@@ -328,7 +555,7 @@ function Home(): ReactElement {
                 return vehicle ? vehicle.license_plate : "";
             },
         },
-        { field: "date", headerName: "Date", width: 150 },
+        { field: "date", headerName: "Date", width: 150, type: "datetime" },
         {
             field: "quantity",
             headerName: "Quantity",
@@ -348,7 +575,7 @@ function Home(): ReactElement {
         { field: "material", headerName: "Material", width: 150 },
         {
             field: "origin",
-            headerName: "Origin",
+            headerName: "PEX",
             width: 300,
             type: "singleSelect",
             valueOptions: allData.pexs
@@ -549,11 +776,14 @@ function Home(): ReactElement {
                         <Title>Result Best</Title>
                         <Container
                             width="100%"
-                            height="500px"
                             margin={{ top: spaces.mhalf }}
                         >
-                            <BodyText>{resultBest.license_plate}</BodyText>
+                            <BodyText>{resultBest.uid} - {resultBest.license_plate}</BodyText>
                         </Container>
+                    </Container>
+
+                    <Container width="100%" minHeight="800px" padding={{ bottom: spaces.xxl }}>
+                        <Map layers={layers}  popupProps={popupProps}/>
                     </Container>
                 </>
             )}

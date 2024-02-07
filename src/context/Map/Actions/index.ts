@@ -51,3 +51,7 @@ export function changeBoundaries(
 ): void {
     dispatch({ type: "CHANGE_BOUNDARIES", payload: { boundaries } });
 }
+
+export function changeFitBounds(dispatch: React.Dispatch<ActionObject>, fitBounds: number[]): void {
+    dispatch({ type: "CHANGE_FIT_BOUNDS", payload: { fitBounds } });
+}

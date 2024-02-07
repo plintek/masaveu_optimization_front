@@ -31,18 +31,6 @@ function Popup({ position, visible = false, content }: PopupProps) {
                     flex={{ direction: "column", rowGap: spaces.s }}
                 >
                     {content}
-
-                    {/* <BodyText medium margin={{ bottom: spaces.xs }}>
-                        {tooltipData.data.name}
-                    </BodyText>
-                    {typeof tooltipData.data.timeOnSpot !== "undefined" && tooltipData.data.timeOnSpot !== 0 && (
-                        <>
-                            <CaptionText regular>Nº parada: {tooltipData.data.order}</CaptionText>
-                            <CaptionText regular>
-                                Tiempo en el punto: {DateUtility.formatTimeFromSeconds(tooltipData.data.timeOnSpot)}
-                            </CaptionText>
-                        </>
-                    )} */}
                 </Container>
             )}
         </>

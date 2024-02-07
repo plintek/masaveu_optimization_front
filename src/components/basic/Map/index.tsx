@@ -14,12 +14,13 @@ import {
     changeZoom,
     changeBoundaries,
 } from "@context/Map/Actions";
-import { useAuthState } from "@context/Auth/Context";
 import ControlButtons from "./components/ControlButtons";
 import { InteractiveState, PickInfo } from "@deck.gl/core/lib/deck";
 import MapLoading from "./components/MapLoading";
 import Popup, { PopupProps } from "./components/Popup";
 import { WebMercatorViewport } from "@deck.gl/core";
+import { AnyObject } from "@interfaces/basic/AnyObject.interface";
+import useWindowDimensions from "@hooks/windowDimensions.hook";
 
 interface MapProps {
     layers: AnyType;
@@ -33,8 +34,9 @@ function Map({ layers, getCursor, onClick, children, popupProps }: MapProps) {
     const mapRef = React.useRef<MapRef>(null);
 
     const { palette } = useTheme();
+    const { width, height } = useWindowDimensions();
 
-    const { viewState, updatedMapSize, isLoading, boundaries } = useMapState();
+    const { viewState, updatedMapSize, isLoading, fitBounds } = useMapState();
     const mapDispatcher = useMapDispatch();
 
     const [mapStyleState, setMapStyleState] = useState({
@@ -104,6 +106,35 @@ function Map({ layers, getCursor, onClick, children, popupProps }: MapProps) {
     useEffect(() => {
         setMapPopupProps(popupProps);
     }, [popupProps]);
+
+    useEffect(() => {
+        if (fitBounds) {
+            const [minX, minY, maxX, maxY] = fitBounds;
+            const viewport = new WebMercatorViewport({
+                width: width * 0.2,
+                height,
+            });
+            let { longitude, latitude, zoom } = viewport.fitBounds(
+                [
+                    [minX, minY],
+                    [maxX, maxY],
+                ],
+                {
+                    padding: 50,
+                },
+            ) as AnyObject;
+
+            if (zoom > 17) {
+                zoom = 17;
+            }
+
+            changeViewState(mapDispatcher, {
+                latitude,
+                longitude,
+                zoom,
+            });
+        }
+    }, [fitBounds]);
 
     return (
         <Container

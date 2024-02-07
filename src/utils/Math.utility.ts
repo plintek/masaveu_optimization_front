@@ -30,6 +30,10 @@ class MathUtility {
 
         return [red, green, blue];
     };
+
+    static zeroPad = (number: number, size = 2): string => {
+        return number.toString().padStart(size, "0");
+    };
 }
 
 export default MathUtility;

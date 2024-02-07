@@ -927,5 +927,17 @@
     {
         "key": "consumed_t",
         "value": "Consumed (t)"
+    },
+    {
+        "key": "Last_trimester_order_count",
+        "value": "Last trimester order count"
+    },
+    {
+        "key": "Last_trimester_mileage_count",
+        "value": "Last trimester mileage count"
+    },
+    {
+        "key": "License_plate",
+        "value": "License Plate"
     }
 ]

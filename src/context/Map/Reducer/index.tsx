@@ -2,7 +2,7 @@ import { AnyObject } from "@interfaces/basic/AnyObject.interface";
 import { MapState } from "../Context";
 import { FlyToInterpolator } from "@deck.gl/core";
 
-type Actions = "UPDATED_MAP_SIZE" | "CHANGE_VIEW_STATE" | "CHANGE_ZOOM" | "FLY_TO_DESTINATION" | "CHANGE_LOADING" | "CHANGE_BOUNDARIES";
+type Actions = "UPDATED_MAP_SIZE" | "CHANGE_VIEW_STATE" | "CHANGE_ZOOM" | "FLY_TO_DESTINATION" | "CHANGE_LOADING" | "CHANGE_BOUNDARIES"| "CHANGE_FIT_BOUNDS";
 
 export interface ActionObject {
     type: Actions;
@@ -31,6 +31,12 @@ export const MapReducer = (initialState: MapState, action: ActionObject): MapSta
                 ...initialState,
                 viewState: { zoom: zoom + action.payload?.zoom },
             };
+
+            case "CHANGE_FIT_BOUNDS":
+                return {
+                    ...initialState,
+                    fitBounds: action.payload?.fitBounds,
+                };
 
         case "FLY_TO_DESTINATION":
             return {

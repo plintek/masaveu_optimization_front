@@ -19,10 +19,7 @@ class TextUtility {
 
     static formatNumber = (num: number, decimalPlaces = 2): string => {
         return num !== null && num !== undefined
-            ? num.toLocaleString("en-US", {
-                  maximumFractionDigits: decimalPlaces,
-                  minimumFractionDigits: 0,
-              })
+            ? num.toLocaleString("en-US", { maximumFractionDigits: decimalPlaces, minimumFractionDigits: 0 })
             : "-";
     };
 
@@ -33,6 +30,25 @@ class TextUtility {
             }
         }
         return obj;
+    };
+
+    static formatDistanceKm = (distance: number): string => {
+        return `${distance.toFixed(2)} km`;
+    };
+
+    static limitLengthIfNoSpaces = (str: string, maxLength: number): string => {
+        if (str && str.length > maxLength && str.indexOf(" ") === -1 && str.indexOf("-") === -1) {
+            return str.substring(0, maxLength) + "...";
+        }
+        return str;
+    };
+
+    static toDashLowerCase = (str: string): string => {
+        return str.toLowerCase().replaceAll(" ", "-");
+    };
+
+    static isNumeric = (str: string): boolean => {
+        return !isNaN(Number(str));
     };
 }
 
