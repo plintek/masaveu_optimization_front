@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 
 import MainContainer from "@components/MainContainer";
 import { LoadingButton } from "@mui/lab";
-import { Checkbox, FormControlLabel } from "@mui/material";
+import { Checkbox, FormControlLabel, useTheme } from "@mui/material";
 import { spaces } from "@styles/spaces";
 import { AnyType } from "@interfaces/basic/Any.interface";
 import Container from "@components/basic/Container";
@@ -77,6 +77,7 @@ const locationsColumns = [
 }));
 
 function Home(): ReactElement {
+    const { palette } = useTheme();
     const [allData, setAllData] = useState<AnyObject>({});
 
     const [selectedOrder, setSelectedOrder] = useState<string>("ORDER-TEST-1");
@@ -228,11 +229,6 @@ function Home(): ReactElement {
                 }),
             ],
         };
-
-        console.log(
-            "linesBetweenVehiclesAndOrder",
-            linesBetweenVehiclesAndOrder
-        );
 
         const lineBetweenDestinationAndOrigin = {
             type: "FeatureCollection",
@@ -573,13 +569,13 @@ function Home(): ReactElement {
     }));
 
     const resultVehiclesColumns = [
-        ...vehiclesColumns,
         {
             field: "score",
             headerName: "Score",
-            width: 150,
+            width: 80,
             type: "number",
         },
+        ...vehiclesColumns,
     ];
 
     const ordersColumns = [
@@ -725,7 +721,7 @@ function Home(): ReactElement {
                     </Container>
                 </Container>
             </Container>
-            <Container>
+            <Container margin={{ top: spaces.lhalf }}>
                 <Title>Vehicles</Title>
                 <Container
                     width="100%"
@@ -830,6 +826,14 @@ function Home(): ReactElement {
                             <DataGrid
                                 rows={result}
                                 columns={resultVehiclesColumns}
+                                sx={{
+                                    backgroundColor: palette.background.default,
+                                    borderRadius: "10px",
+
+                                    "& .MuiDataGrid-row:hover": {
+                                        color: "primary.main",
+                                    },
+                                }}
                             />
                         </Container>
                     </Container>

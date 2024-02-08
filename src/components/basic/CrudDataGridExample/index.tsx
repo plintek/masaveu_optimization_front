@@ -421,15 +421,9 @@ function CrudDataGrid<T>({
                         },
                     }}
                     sx={{
-                        border: 0,
                         backgroundColor: palette.background.default,
-                        borderRadius: "18px",
-                        "& .MuiDataGrid-columnHeaders": {
-                            border: 0,
-                        },
-                        "& .MuiDataGrid-cell": {
-                            border: 0,
-                        },
+                        borderRadius: "10px",
+
                         "& .MuiDataGrid-row:hover": {
                             color: "primary.main",
                         },
