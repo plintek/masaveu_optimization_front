@@ -444,6 +444,7 @@ function Home(): ReactElement {
             field: "gross_vehicle_weight",
             headerName: "Gross Vehicle Weight",
             width: 200,
+            type: "number",
         },
         {
             field: "tare_weight",
