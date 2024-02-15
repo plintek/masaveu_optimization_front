@@ -70,13 +70,12 @@ function LoginView(props: LoginViewProps) {
                         >
                             {t("Masaveu")}
                         </DisplayS>
-                        <Subtitle regular>{t("Truck optimization platform")}</Subtitle>
+                        <Subtitle regular>
+                            {t("Truck optimization platform")}
+                        </Subtitle>
                     </Container>
                     <Container width="100%" maxWidth="420px">
                         <LoginForm {...props} />
-                    </Container>
-                    <Container margin={{ top: spaces.xl }}>
-                        <LegalLinks />
                     </Container>
                 </Container>
             </Container>

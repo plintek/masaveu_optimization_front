@@ -100,19 +100,6 @@ function LoginForm({
                         />
                     </FormControl>
                 </Container>
-                <Container
-                    flex={{
-                        justifyContent: "flex-end",
-                        alignItems: "center",
-                    }}
-                    margin={{ top: spaces.xs, bottom: spaces.m }}
-                >
-                    <LinkContainer to="/forgot-password">
-                        <CaptionText regular>
-                            {t("Login.forgot_password")}
-                        </CaptionText>
-                    </LinkContainer>
-                </Container>
                 <Container margin={{ top: spaces.mhalf }}>
                     <LoadingButton
                         loading={isLoading}

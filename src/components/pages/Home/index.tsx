@@ -129,16 +129,17 @@ function Home(): ReactElement {
                 };
             }
         );
-        const sortedVehicles = formattedVehicleList.sort(
+        // sort ascendant by score
+        const sortedVehicles = structuredClone(formattedVehicleList).sort(
             (a: AnyObject, b: AnyObject) => {
                 return a.score - b.score;
             }
         );
-        const sortedInversedVehicles = formattedVehicleList.sort(
-            (a: AnyObject, b: AnyObject) => {
-                return b.score - a.score;
-            }
-        );
+        const sortedInversedVehicles = structuredClone(
+            formattedVehicleList
+        ).sort((a: AnyObject, b: AnyObject) => {
+            return b.score - a.score;
+        });
 
         setResult(sortedVehicles);
         setResultBest(resultData.best_vehicle);
