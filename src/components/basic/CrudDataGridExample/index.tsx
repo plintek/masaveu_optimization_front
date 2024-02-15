@@ -13,7 +13,6 @@ import {
     GridRowSelectionModel,
     MuiEvent,
 } from "@mui/x-data-grid";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Close";
@@ -49,7 +48,6 @@ interface CrudDataGridProps<T> {
     showAddButton?: boolean;
     showActionsColumn?: boolean;
     showActionsFirstColumn?: boolean;
-    showEditButtonFunction?: (row: T & { id: number }) => boolean;
     loading?: boolean;
     showDeleteButton?: boolean;
     extraToolbarElements?: React.ReactNode;
@@ -76,7 +74,6 @@ function CrudDataGrid<T>({
     showAddButton = true,
     showActionsColumn = true,
     showActionsFirstColumn = false,
-    showEditButtonFunction,
     loading = false,
     showDeleteButton = true,
     extraToolbarElements,
@@ -303,6 +300,96 @@ function CrudDataGrid<T>({
         setSelectionModel(selectionModel);
     };
 
+    const handleImportButtonClick = () => {
+        // Ask for file
+        const fileInput = document.createElement("input");
+        fileInput.type = "file";
+        fileInput.accept = ".csv";
+        fileInput.onchange = (e) => {
+            const file = (e.target as HTMLInputElement).files?.[0];
+            if (file) {
+                file.text().then(async (text: AnyType) => {
+                    const rows = text.split("\n");
+                    const headers = rows[0].split(";");
+                    const realFieldHeader: AnyObject[] = [];
+                    headers.forEach((header: AnyType) => {
+                        realFieldHeader.push(
+                            columns.find(
+                                (column) =>
+                                    column.headerName ===
+                                    header.replace(/\r/g, "")
+                            ) || {}
+                        );
+                    });
+                    const data = [];
+                    for (let i = 1; i < rows.length; i++) {
+                        const row = rows[i].split(";");
+                        let index = -1;
+                        for (let j = 0; j < realFieldHeader.length; j++) {
+                            if (realFieldHeader[j].field === "uid") {
+                                index = j;
+                                break;
+                            }
+                        }
+                        const obj: AnyObject = allData[entityName].find(
+                            (row: AnyObject) => row.id === row[index]
+                        );
+                        for (let j = 0; j < row.length; j++) {
+                            obj[realFieldHeader[j].field] = row[j].replace(
+                                /\r/g,
+                                ""
+                            );
+                            if (realFieldHeader[j].field === "uid") {
+                                obj["id"] = obj[realFieldHeader[j].field];
+                            }
+                            if (
+                                realFieldHeader[j].type === "date" ||
+                                realFieldHeader[j].type === "dateTime"
+                            ) {
+                                if (row[j] === "" || row[j] === "-") {
+                                    obj[realFieldHeader[j].field] = null;
+                                    continue;
+                                }
+                                const date = row[j].split(" ");
+                                const dateArray = date[0].split("/");
+                                const timeArray = date[1]
+                                    ? date[1].split(":")
+                                    : [];
+                                obj[realFieldHeader[j].field] = new Date(
+                                    Number(dateArray[2]),
+                                    Number(dateArray[1]) - 1,
+                                    Number(dateArray[0]),
+                                    Number(timeArray[0]) || 0,
+                                    Number(timeArray[1]) || 0
+                                );
+                            } else if (realFieldHeader[j].type === "number") {
+                                obj[realFieldHeader[j].field] = Number(
+                                    obj[realFieldHeader[j].field].replace(
+                                        ",",
+                                        "."
+                                    )
+                                );
+                            } else if (realFieldHeader[j].type === "boolean") {
+                                obj[realFieldHeader[j].field] =
+                                    obj[realFieldHeader[j].field] === "true";
+                            }
+                        }
+                        data.push(obj);
+                    }
+                    allData[entityName] = data;
+                    const update = await ApiUtility.request({
+                        url: "utils/save-data/",
+                        method: "POST",
+                        data: allData,
+                    });
+                    updateAllData?.(allData);
+                    setRows(allData[entityName]);
+                });
+            }
+        };
+        fileInput.click();
+    };
+
     let formattedColumns: GridColDef[] = [];
 
     if (showActionsColumn) {
@@ -413,6 +500,8 @@ function CrudDataGrid<T>({
                     }}
                     componentsProps={{
                         toolbar: {
+                            columns,
+                            handleImportButtonClick,
                             handleAddRowClick,
                             entityName,
                             showAddButton,

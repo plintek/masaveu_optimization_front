@@ -474,6 +474,7 @@ function Home(): ReactElement {
                       label: pex.name,
                   }))
                 : [],
+            exportable: false,
             valueFormatter: (params: AnyType) => {
                 const pex = allData.pexs.find(
                     (pex: AnyObject) => pex.uid === params.value
@@ -648,6 +649,7 @@ function Home(): ReactElement {
                 );
                 return pex ? pex.name : "";
             },
+            exportable: false,
         },
         {
             field: "destination",
@@ -666,6 +668,7 @@ function Home(): ReactElement {
                 );
                 return destination ? destination.name : "";
             },
+            exportable: false,
         },
     ].map((column) => ({
         ...column,
