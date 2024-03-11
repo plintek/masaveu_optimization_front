@@ -21,7 +21,7 @@ interface CustomToolbarProps {
     showExportButton?: boolean;
     handlePrintButtonClick?: () => void;
     handleImportButtonClick?: () => void;
-    columns: AnyObject[];
+    columns?: AnyObject[];
 }
 
 function CustomToolbar({
@@ -35,11 +35,12 @@ function CustomToolbar({
     columns,
 }: CustomToolbarProps) {
     const { t } = useTranslation();
-    const exportableFields = (
-        columns.filter(
-            (col) => typeof col.exportable === "undefined" || col.exportable
-        ) as AnyType[]
-    ).map((col) => col.field);
+    const exportableFields =
+        (
+            columns?.filter(
+                (col) => typeof col.exportable === "undefined" || col.exportable
+            ) as AnyType[]
+        ).map((col) => col.field) || [];
 
     return (
         <GridToolbarContainer>
