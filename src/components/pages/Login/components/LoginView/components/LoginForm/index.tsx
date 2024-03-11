@@ -111,7 +111,7 @@ function LoginForm({
                             width: "100%",
                         }}
                     >
-                        {t("next")}
+                        Login
                     </LoadingButton>
                 </Container>
             </Container>
